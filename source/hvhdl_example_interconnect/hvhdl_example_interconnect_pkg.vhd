@@ -45,7 +45,6 @@ architecture rtl of hvhdl_example_interconnect is
 
     signal i     : integer range 0 to 2**16-1 := 1199;
 
-    signal communications_clocks   : communications_clock_group;
     signal communications_data_in  : communications_data_input_group;
     signal communications_data_out : communications_data_output_group;
 
@@ -130,10 +129,9 @@ begin
     end process combine_buses;	
 
 --------------
-    communications_clocks <= (clock => system_clock);
     u_communications : entity work.communications
     port map(
-        communications_clocks,
+        (clock => system_clock),
         hvhdl_example_interconnect_FPGA_in.communications_FPGA_in,
         hvhdl_example_interconnect_FPGA_out.communications_FPGA_out,
         communications_data_in ,
